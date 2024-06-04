@@ -359,6 +359,14 @@ server:
   # See vault.mode in _helpers.tpl for implementation details.
   enabled: "-"
 
+config: |
+    storage "mysql" {
+      address      = "mysql:3306"
+      username     = "root"
+      password     = "Password_1"
+      database     = "database"
+    }
+
   # [Enterprise Only] This value refers to a Kubernetes secret that you have
   # created that contains your enterprise license. If you are not using an
   # enterprise image or if you plan to introduce the license key via another
@@ -407,7 +415,7 @@ server:
   # If deployment is on OpenShift, the following block is ignored.
   # In order to expose the service, use the route section below
   ingress:
-    enabled: false
+    enabled: true
     labels: {}
       # traffic: external
     annotations: {}
@@ -873,7 +881,7 @@ server:
   # Helm project by default.  It is possible to manually configure Vault to use a
   # different HA backend.
   ha:
-    enabled: false
+    enabled: true
     replicas: 3
 
     # Set the api_addr configuration for Vault HA
@@ -1032,7 +1040,7 @@ ui:
   # serviceType can be used to control the type of service created. For
   # example, setting this to "LoadBalancer" will create an external load
   # balancer (for supported K8S installations) to access the UI.
-  enabled: false
+  enabled: true
   publishNotReadyAddresses: true
   # The service should only contain selectors for active Vault pod
   activeVaultPodOnly: false
